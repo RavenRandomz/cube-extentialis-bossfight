@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Cubic Extentialis Bossfight"
+run/main_scene="res://testworld.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 

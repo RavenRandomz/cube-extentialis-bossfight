@@ -16,14 +16,14 @@ size = Vector3(10, 1, 10)
 [node name="player" type="CharacterBody3D" parent="."]
 script = ExtResource("1_fffte")
 
+[node name="camera" type="Camera3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.746968, 2.35295)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="player"]
 shape = SubResource("BoxShape3D_mm66v")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="player"]
 mesh = SubResource("BoxMesh_gn7qv")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.08159)
 
 [node name="sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.330037, 0.943968, 0, -0.943968, -0.330037, 0, 3.03326, 0)

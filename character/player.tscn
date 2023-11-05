@@ -17,6 +17,7 @@ playerCollsionMesh = NodePath("CollisionShape3D")
 shape = SubResource("BoxShape3D_mm66v")
 
 [node name="OrbitalCamera" parent="." instance=ExtResource("2_iejax")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.716, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_gn7qv")

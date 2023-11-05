@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" path="res://scripts/camera_orbit_center.gd" id="1_2m7ok"]
 
-[node name="OrbitalCamera" type="Node3D"]
+[node name="OrbitalCamera" type="Node3D" node_paths=PackedStringArray("vertical_pivot")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.66576, 0)
 script = ExtResource("1_2m7ok")
+vertical_pivot = NodePath("VerticalPivot")
 
 [node name="VerticalPivot" type="Node3D" parent="."]
 

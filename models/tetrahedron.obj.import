@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cw0xmao5q8s4u"
+path="res://.godot/imported/tetrahedron.obj-9fefa763a29c5e2694849934780a9dec.mesh"
+
+[deps]
+
+files=["res://.godot/imported/tetrahedron.obj-9fefa763a29c5e2694849934780a9dec.mesh"]
+
+source_file="res://models/tetrahedron.obj"
+dest_files=["res://.godot/imported/tetrahedron.obj-9fefa763a29c5e2694849934780a9dec.mesh", "res://.godot/imported/tetrahedron.obj-9fefa763a29c5e2694849934780a9dec.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

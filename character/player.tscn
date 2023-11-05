@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnlvq0ut74cfd"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_tb1br"]
+[ext_resource type="PackedScene" uid="uid://2bmn74221edj" path="res://character/orbital_camera.tscn" id="2_iejax"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mm66v"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_gn7qv"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_tb1br")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_mm66v")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_gn7qv")
+
+[node name="OrbitalCamera" parent="." instance=ExtResource("2_iejax")]

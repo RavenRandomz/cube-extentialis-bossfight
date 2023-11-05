@@ -7,14 +7,16 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_gn7qv"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "playerBody", "playerCollsionMesh")]
 script = ExtResource("1_tb1br")
 camera = NodePath("OrbitalCamera")
+playerBody = NodePath("MeshInstance3D")
+playerCollsionMesh = NodePath("CollisionShape3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_mm66v")
 
+[node name="OrbitalCamera" parent="." instance=ExtResource("2_iejax")]
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_gn7qv")
-
-[node name="OrbitalCamera" parent="." instance=ExtResource("2_iejax")]

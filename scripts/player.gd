@@ -6,6 +6,10 @@ extends CharacterBody3D
 @export var playerBody: Node3D
 @export var playerCollsionMesh: Node3D
 @export var playerTurnSpeed: float = 5
+@export var display: Player_HUD
+
+@export var min_health: float = 0
+@export var max_health: float = 1000
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 10
@@ -33,11 +37,17 @@ func kill():
 	_health_check()
 
 func _health_check():
+	display.update_health_bar(health)
 	if health <= 0:
 		_on_death()
 
 func _on_death():
 	pass
+
+
+func _ready():
+	display.set_health_bar_range(min_health, max_health)
+	display.update_health_bar(health)
 
 func _physics_process(delta):
 	var translational_input= Input.get_vector("player_strafeleft", "player_straferight", "player_forward", "player_backward")

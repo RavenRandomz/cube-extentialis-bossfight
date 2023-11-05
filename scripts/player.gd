@@ -1,6 +1,7 @@
 class_name Player
 extends CharacterBody3D
 
+@export var health: float = 1000
 @export var camera: Node3D
 @export var playerBody: Node3D
 @export var playerCollsionMesh: Node3D

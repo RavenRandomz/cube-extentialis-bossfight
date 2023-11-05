@@ -7,8 +7,9 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_gn7qv"]
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera")]
 script = ExtResource("1_tb1br")
+camera = NodePath("OrbitalCamera")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_mm66v")

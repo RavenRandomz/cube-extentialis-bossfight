@@ -11,6 +11,8 @@ extends CharacterBody3D
 @export var min_health: float = 0
 @export var max_health: float = 1000
 
+var _stunned: bool = false
+
 const SPEED = 5.0
 const JUMP_VELOCITY = 10
 
@@ -43,6 +45,17 @@ func _health_check():
 
 func _on_death():
 	pass
+
+# Stun time in seconds
+func stun(stun_time):
+	if not _stunned:
+		_stunned = true
+		await get_tree().create_timer(stun_time).timeout
+		_stunned = false
+
+
+func is_stunned():
+	return _stunned
 
 
 func _ready():
@@ -88,7 +101,8 @@ func _translational_input_pressed():
 
 func _handle_input_logic(translational_input, delta): 
 	_handle_jump_logic(delta)
-	_handle_translational_motion_logic(translational_input, delta)
+	if not is_stunned():
+		_handle_translational_motion_logic(translational_input, delta)
 
 func _handle_translational_motion_logic(translational_input, delta):
 	var direction_basis = (camera.transform.basis * Vector3(translational_input.x, 0, translational_input.y)).normalized()

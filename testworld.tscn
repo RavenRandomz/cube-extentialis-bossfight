@@ -1,19 +1,52 @@
-[gd_scene load_steps=3 format=3 uid="uid://c8tcdkqy05qfo"]
+[gd_scene load_steps=8 format=3 uid="uid://c8tcdkqy05qfo"]
 
+[ext_resource type="Script" path="res://scripts/damage_box.gd" id="1_3648u"]
 [ext_resource type="PackedScene" uid="uid://bnlvq0ut74cfd" path="res://character/player.tscn" id="1_tsfjo"]
 [ext_resource type="PackedScene" uid="uid://db8eme6e062u" path="res://enemies/boss.tscn" id="2_6tpxl"]
+[ext_resource type="PackedScene" uid="uid://cmmulbrsy1iwr" path="res://GUI/player_hud.tscn" id="4_wpvqo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pdxfl"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ahr4w"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a62fd"]
+margin = 0.0
+size = Vector3(1.1, 1.1, 1.1)
 
 [node name="world" type="Node3D"]
 
+[node name="DamageBox" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.9995, -2.67024, 0.00290513)
+
 [node name="StaticGround" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, -2.67024, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.9995, -2.67024, 0.00290513)
 use_collision = true
 size = Vector3(20, 1, 20)
 
 [node name="sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.330037, 0.943968, 0, -0.943968, -0.330037, 0, 3.03326, 0)
 
-[node name="Player" parent="." instance=ExtResource("1_tsfjo")]
+[node name="Player" parent="." node_paths=PackedStringArray("display") instance=ExtResource("1_tsfjo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 3.98877)
+display = NodePath("../PlayerHUD")
 
 [node name="CSGMesh3D" parent="." instance=ExtResource("2_6tpxl")]
+
+[node name="DamageBox2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.2601, -1.35198, -3.95684)
+script = ExtResource("1_3648u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageBox2"]
+shape = SubResource("BoxShape3D_pdxfl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DamageBox2"]
+mesh = SubResource("BoxMesh_ahr4w")
+
+[node name="Area3D" type="Area3D" parent="DamageBox2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageBox2/Area3D"]
+shape = SubResource("BoxShape3D_a62fd")
+
+[node name="PlayerHUD" parent="." instance=ExtResource("4_wpvqo")]
+
+[connection signal="body_shape_entered" from="DamageBox2/Area3D" to="DamageBox2" method="_on_area_3d_body_shape_entered"]

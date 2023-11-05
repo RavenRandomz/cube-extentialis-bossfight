@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://db8eme6e062u"]
+
+[ext_resource type="ArrayMesh" uid="uid://co1kfcjt4a6g1" path="res://models/dodecahedron.obj" id="1_8w0uw"]
+
+[node name="CSGMesh3D" type="CSGMesh3D"]
+mesh = ExtResource("1_8w0uw")

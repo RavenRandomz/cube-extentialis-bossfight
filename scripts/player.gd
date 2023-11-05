@@ -40,7 +40,6 @@ func _on_death():
 	pass
 
 func _physics_process(delta):
-	print(transform)
 	var translational_input= Input.get_vector("player_strafeleft", "player_straferight", "player_forward", "player_backward")
 
 	_handle_input_logic(translational_input, delta)

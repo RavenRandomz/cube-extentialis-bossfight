@@ -1,11 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8tcdkqy05qfo"]
+[gd_scene load_steps=2 format=3 uid="uid://c8tcdkqy05qfo"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_fffte"]
-[ext_resource type="PackedScene" uid="uid://2bmn74221edj" path="res://character/orbital_camera.tscn" id="2_kolw1"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_mm66v"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_gn7qv"]
+[ext_resource type="PackedScene" uid="uid://bnlvq0ut74cfd" path="res://character/player.tscn" id="1_tsfjo"]
 
 [node name="world" type="Node3D"]
 
@@ -14,16 +9,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.67024, 0)
 use_collision = true
 size = Vector3(10, 1, 10)
 
-[node name="Player" type="CharacterBody3D" parent="."]
-script = ExtResource("1_fffte")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
-shape = SubResource("BoxShape3D_mm66v")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
-mesh = SubResource("BoxMesh_gn7qv")
-
-[node name="OrbitalCamera" parent="Player" instance=ExtResource("2_kolw1")]
-
 [node name="sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.330037, 0.943968, 0, -0.943968, -0.330037, 0, 3.03326, 0)
+
+[node name="Player" parent="." instance=ExtResource("1_tsfjo")]

@@ -23,12 +23,15 @@ shape = SubResource("BoxShape3D_mm66v")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="player"]
 mesh = SubResource("BoxMesh_gn7qv")
 
-[node name="orbitcenter" type="Node3D" parent="player" node_paths=PackedStringArray("camera")]
+[node name="orbitcenter" type="Node3D" parent="player" node_paths=PackedStringArray("vertical_pivot")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.66576, 0)
 script = ExtResource("2_ym0jv")
-camera = NodePath("camera")
+vertical_pivot = NodePath("vertical_pivot")
 
-[node name="camera" type="Camera3D" parent="player/orbitcenter"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.746968, 2.35295)
+[node name="vertical_pivot" type="Node3D" parent="player/orbitcenter"]
+
+[node name="camera" type="Camera3D" parent="player/orbitcenter/vertical_pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.353)
 
 [node name="sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.330037, 0.943968, 0, -0.943968, -0.330037, 0, 3.03326, 0)

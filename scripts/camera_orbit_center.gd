@@ -2,7 +2,7 @@ extends Node3D
 
 @export var mouse_rotation_sensitivity:float = .1 #Degrees per pixel
 @export var camera_rotation_max: float = 2
-@export var camera: Camera3D 
+@export var vertical_pivot: Node3D
 
 
 # Called when the node enters the scene tree for the first time.
@@ -23,11 +23,12 @@ func _input(event):
 
 		print(camera_rotation)
 
+		# Handle camera looking up and down motion
+		vertical_pivot.rotate_object_local(Vector3.LEFT, camera_rotation.y)
+
 		# Handle orbit motion 
 		rotate_object_local(Vector3.UP, camera_rotation.x) 
 
-		# Handle camera looking up and down motion
-		rotate_object_local(Vector3.LEFT, camera_rotation.y)
 
 		orthonormalize() # Prevent transform deformation due to frequent changes and floating point error
 

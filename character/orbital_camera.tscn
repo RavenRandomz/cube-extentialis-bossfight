@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://2bmn74221edj"]
+
+[ext_resource type="Script" path="res://scripts/camera_orbit_center.gd" id="1_2m7ok"]
+
+[node name="orbital_camera" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.66576, 0)
+script = ExtResource("1_2m7ok")
+
+[node name="vertical_pivot" type="Node3D" parent="."]
+
+[node name="camera" type="Camera3D" parent="vertical_pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.353)

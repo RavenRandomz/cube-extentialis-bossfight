@@ -23,8 +23,9 @@ shape = SubResource("BoxShape3D_mm66v")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="player"]
 mesh = SubResource("BoxMesh_gn7qv")
 
-[node name="orbitcenter" type="Node3D" parent="player"]
+[node name="orbitcenter" type="Node3D" parent="player" node_paths=PackedStringArray("camera")]
 script = ExtResource("2_ym0jv")
+camera = NodePath("camera")
 
 [node name="camera" type="Camera3D" parent="player/orbitcenter"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.746968, 2.35295)

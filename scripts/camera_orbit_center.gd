@@ -1,6 +1,7 @@
 extends Node3D
 
 @export var mouse_rotation_sensitivity:float = .1 #Degrees per pixel
+@export var camera_rotation_max: float = 2
 @export var camera: Camera3D 
 
 
@@ -24,3 +25,9 @@ func _input(event):
 
 		# Handle orbit motion 
 		rotate_object_local(Vector3.UP, camera_rotation.x) 
+
+		# Handle camera looking up and down motion
+		rotate_object_local(Vector3.LEFT, camera_rotation.y)
+
+		orthonormalize() # Prevent transform deformation due to frequent changes and floating point error
+

@@ -21,8 +21,6 @@ func _input(event):
 
 		camera_rotation.x *= -1 #Negative because clockwise (righthand rule) is the positive direction
 
-		print(camera_rotation)
-
 		# Handle camera looking up and down motion
 		vertical_pivot.rotate_object_local(Vector3.LEFT, camera_rotation.y)
 

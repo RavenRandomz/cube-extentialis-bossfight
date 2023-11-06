@@ -1,10 +1,8 @@
+class_name BossFightHUD
 extends Control
 
 @export var health_bar: ProgressBar
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
+@export var health: float = 10000
 
 func update_health_bar(health):
 	health_bar.value = health

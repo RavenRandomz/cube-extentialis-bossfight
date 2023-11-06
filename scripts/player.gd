@@ -10,8 +10,11 @@ extends CharacterBody3D
 
 @export var min_health: float = 0
 @export var max_health: float = 1000
+@export var bulletSource: Node3D
 
 var _stunned: bool = false
+
+var basic_bullet = preload("res://projectile/basic_bullet.tscn")
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 10
@@ -103,6 +106,14 @@ func _handle_input_logic(translational_input, delta):
 	_handle_jump_logic(delta)
 	if not is_stunned():
 		_handle_translational_motion_logic(translational_input, delta)
+		_handle_bullet_firing(delta)
+
+func _handle_bullet_firing(delta):
+	if Input.is_action_pressed("player_fire_bullet"):
+		var bullet: RigidBody3D = basic_bullet.instantiate()
+		bullet.transform.basis = bulletSource.transform.basis
+		bullet.global_position = bulletSource.global_position
+		get_parent().add_child(bullet)
 
 func _handle_translational_motion_logic(translational_input, delta):
 	var direction_basis = (camera.transform.basis * Vector3(translational_input.x, 0, translational_input.y)).normalized()

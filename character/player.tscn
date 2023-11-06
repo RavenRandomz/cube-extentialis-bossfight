@@ -7,11 +7,12 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_gn7qv"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "playerBody", "playerCollsionMesh")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "playerBody", "playerCollsionMesh", "bulletSource")]
 script = ExtResource("1_tb1br")
 camera = NodePath("OrbitalCamera")
 playerBody = NodePath("MeshInstance3D")
 playerCollsionMesh = NodePath("CollisionShape3D")
+bulletSource = NodePath("MeshInstance3D/BulletSource")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_mm66v")
@@ -21,3 +22,6 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.7
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_gn7qv")
+
+[node name="BulletSource" type="Node3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.28324)

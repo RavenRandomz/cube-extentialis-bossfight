@@ -4,13 +4,14 @@
 [ext_resource type="ArrayMesh" uid="uid://chdbs6xw243tl" path="res://models/icosahedron.obj" id="1_kxibe"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_rrhl0"]
-radius = 0.985
+radius = 0.755
 
 [node name="BasicBullet" type="RigidBody3D"]
 gravity_scale = 0.0
 script = ExtResource("1_0trdb")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.69, 0, 0, 0, 0.69, 0, 0, 0, 0.69, 0, 0, 0)
 mesh = ExtResource("1_kxibe")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

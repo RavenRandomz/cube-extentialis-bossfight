@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2tbt1dce01dd"]
+
+[ext_resource type="Script" path="res://projectile/basic_bullet.gd" id="1_4pkyv"]
+[ext_resource type="ArrayMesh" uid="uid://chdbs6xw243tl" path="res://models/icosahedron.obj" id="1_kxibe"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_rrhl0"]
+radius = 0.985
+
+[node name="BasicBullet" type="RigidBody3D"]
+gravity_scale = 0.0
+script = ExtResource("1_4pkyv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_kxibe")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_rrhl0")

@@ -1,3 +1,4 @@
+class_name BasicBullet
 extends RigidBody3D
 
 @export var damage: float = 100
@@ -14,4 +15,7 @@ func _ready():
 func _on_body_entered(body:Node):
 	if body.has_method("damage"):
 		body.damage(damage)
-	queue_free()
+	
+	if not(body is BasicBullet):
+		queue_free()
+	

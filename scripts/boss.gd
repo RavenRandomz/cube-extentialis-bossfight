@@ -5,7 +5,7 @@ extends AnimatableBody3D
 @export var health: float = 100000
 
 @export var min_health: float = 0
-@export var max_health: float = 1000
+@export var max_health: float = 100000
 
 func get_health() -> float:
 	return health

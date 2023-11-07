@@ -20,6 +20,17 @@ class_name CharacterBodyEntity3D extends CharacterBody3D
 	set(new_health): 
 		_entity.set_health(new_health)
 
+@export var min_health:float = 1000:
+	get:
+		return _entity.min_health
+	set(new_min_health): 
+		_entity.min_health = new_min_health
+
+@export var max_health:float = 1000:
+	get:
+		return _entity.min_health
+	set(new_max_health): 
+		_entity.min_health = new_max_health
 
 var _entity = Entity.new()
 

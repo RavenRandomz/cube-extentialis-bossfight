@@ -75,29 +75,16 @@ func _handle_input_logic(translational_input, delta):
 	if not is_stunned():
 		var direction_basis = (camera.transform.basis * Vector3(translational_input.x, 0, translational_input.y)).normalized()
 		player_movement_handler.controlled_translational_motion(direction_basis, delta)
-		_handle_bullet_firing(delta)
-
-func _handle_bullet_firing(delta):
-	if Input.is_action_pressed("player_fire_bullet"):
-		bullet_source.fire()
-
 
 func _handle_jump_logic(delta):
-	# Handle Jump.
 	if Input.is_action_just_pressed("player_jump") and is_on_floor():
 		velocity.y = jump_speed
 
-
 func _on_player_bullet_fire():
-	print("Bullet Fire")
-	pass # Replace with function body.
-
+	bullet_source.fire()
 
 func _on_player_jump_input():
 	print("Jump Signal")
-	pass # Replace with function body.
-
 
 func _on_translational_motion_input(translational_input_map):
 	print (translational_input_map)
-	pass # Replace with function body.

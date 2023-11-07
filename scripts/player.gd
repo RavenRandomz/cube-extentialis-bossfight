@@ -22,10 +22,6 @@ const JUMP_VELOCITY = 10
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-
-func _init():
-	pass
-
 func _ready():
 	display.set_health_bar_range(min_health, max_health)
 	display.update_health_bar(health)

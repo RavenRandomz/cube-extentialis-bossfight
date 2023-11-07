@@ -22,6 +22,10 @@ class_name Entity
 var health = 1000
 var stunned = false
 
+# Used so whenever death happens, the parent compositor class can decide white to do on death
+signal on_death
+
+
 func _init(starting_health:float = 1000):
 	health = starting_health
 	
@@ -50,7 +54,7 @@ func _health_check():
 		_on_death()
 
 func _on_death():
-	pass
+	on_death.emit()
 
 # Stun time in seconds
 func stun(stun_time):

@@ -1,6 +1,7 @@
 class_name PlayerMovementHandler extends Node
 
 var _player:Player
+var speed = 5
 
 func _init (parent_player:Player):
 	_player = parent_player

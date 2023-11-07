@@ -16,7 +16,12 @@ var player_movement_handler = PlayerMovementHandler.new(self)
 
 var basic_bullet = preload("res://projectile/basic_bullet.tscn")
 
-@export var speed:float = 5.0
+@export var speed:float = 5.0:
+	get:
+		return player_movement_handler.speed
+	set(new_speed): 
+		player_movement_handler.speed = new_speed
+
 @export var jump_speed:float = 10.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.

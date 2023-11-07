@@ -2,8 +2,9 @@ class_name PlayerBodyHandler extends Node
 
 @export var _player:Player
 @export var _player_collision_shape:CollisionShape3D
-var body_turn_speed = 10
 @export var input_handler:PlayerInputHandler
+
+var body_turn_speed = 10
 
 func _ready():
 	print("I am here")

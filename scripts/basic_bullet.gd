@@ -9,8 +9,10 @@ func _ready():
 	# Initialize collision detect
 	contact_monitor = true
 	max_contacts_reported = 1
+	linear_velocity = transform.basis.z * speed
 
-	linear_velocity = transform.basis.x * speed
+func fire():
+	linear_velocity = transform.basis.z * speed
 
 func _on_body_entered(body:Node):
 	if body.has_method("damage"):

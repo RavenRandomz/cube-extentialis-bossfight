@@ -6,11 +6,7 @@ class_name PlayerBodyHandler extends Node
 
 var body_turn_speed = 10
 
-func _ready():
-	print("I am here")
-
 func _process(delta):
-	print("Active")
 	_player_view_rotation_sync(delta)
 
 func _player_view_rotation_sync(delta):
@@ -25,7 +21,6 @@ func _player_view_rotation_sync(delta):
 	# is the angular "origin", the 0 degrees). That means that the rotation of the player body is equal
 	# To the origin if the angle is 0 degrees
 	var angular_difference = player_forward_body_axis.signed_angle_to(direction, _player_collision_shape.transform.basis.y)
-	print(angular_difference)
 	var delta_rotation = lerp_angle(0, angular_difference, delta * body_turn_speed)
 
 	if input_handler._translational_input_active():

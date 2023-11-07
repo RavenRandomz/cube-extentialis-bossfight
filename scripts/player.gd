@@ -76,14 +76,9 @@ func _translational_input_pressed():
 	
 
 func _handle_input_logic(translational_input, delta): 
-	_handle_jump_logic(delta)
 	if not is_stunned():
 		var direction_basis = (camera.transform.basis * Vector3(translational_input.x, 0, translational_input.y)).normalized()
 		player_movement_handler.controlled_translational_motion(direction_basis)
-
-func _handle_jump_logic(delta):
-	if Input.is_action_just_pressed("player_jump") and is_on_floor():
-		velocity.y = jump_speed
 
 func _on_player_bullet_fire():
 	bullet_source.fire()

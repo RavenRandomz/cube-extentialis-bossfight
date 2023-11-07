@@ -11,8 +11,10 @@ extends CharacterBodyEntity3D
 @export var min_health: float = 0
 @export var max_health: float = 1000
 @export var bullet_source: BasicBulletSource 
+@export var input_handler: PlayerInputHandler
 
 var player_movement_handler = PlayerMovementHandler.new(self)
+
 
 var basic_bullet = preload("res://projectile/basic_bullet.tscn")
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -42,14 +44,6 @@ func _physics_process(delta):
 	# _player_view_rotation_sync(get_desired_movement_direction(), delta)
 	move_and_slide()
 
-
-func _translational_input_pressed():
-	return Input.is_action_pressed("player_forward")\
-	or Input.is_action_pressed("player_backward")\
-	or Input.is_action_pressed("player_strafeleft")\
-	or Input.is_action_pressed("player_straferight")
-
-
 func _on_player_bullet_fire():
 	if (not is_stunned()):
 		bullet_source.fire()
@@ -63,6 +57,6 @@ func _on_translational_motion_input(translational_input_map):
 		var direction = (camera.transform.basis * Vector3(translational_input_map.x, 0, translational_input_map.y)).normalized()
 		player_movement_handler.controlled_translational_motion(direction)
 
-func get_desired_movement_direction():
-	var raw_translational_map = player_movement_handler.get_translational_input_map()
+func get_desired_translational_movement_direction():
+	var raw_translational_map = input_handler.get_translational_input_map()
 	return (camera.transform.basis * Vector3(raw_translational_map.x, 0, raw_translational_map.y)).normalized()

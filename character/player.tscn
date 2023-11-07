@@ -1,45 +1,50 @@
-[gd_scene load_steps=8 format=3 uid="uid://bnlvq0ut74cfd"]
+[gd_scene load_steps=9 format=3 uid="uid://bnlvq0ut74cfd"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_tb1br"]
 [ext_resource type="PackedScene" uid="uid://2bmn74221edj" path="res://character/orbital_camera.tscn" id="2_iejax"]
 [ext_resource type="Script" path="res://scripts/basic_bullet_source.gd" id="3_dan72"]
-[ext_resource type="Script" path="res://scripts/player_hud.gd" id="4_ja5l6"]
 [ext_resource type="Script" path="res://scripts/player_input_handler.gd" id="5_qo7sf"]
+[ext_resource type="PackedScene" uid="uid://cmmulbrsy1iwr" path="res://GUI/player_hud.tscn" id="6_jp61w"]
+[ext_resource type="Script" path="res://scripts/player_body_handler.gd" id="6_p31lb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mm66v"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_gn7qv"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "playerBody", "playerCollsionMesh", "display", "bullet_source")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "playerBody", "playerCollsionMesh", "display", "bullet_source", "input_handler")]
 script = ExtResource("1_tb1br")
 camera = NodePath("OrbitalCamera")
-playerBody = NodePath("MeshInstance3D")
+playerBody = NodePath("CollisionShape3D/MeshInstance3D")
 playerCollsionMesh = NodePath("CollisionShape3D")
-display = NodePath("Player_HUD")
-bullet_source = NodePath("MeshInstance3D/BulletSource")
+display = NodePath("PlayerHUD")
+bullet_source = NodePath("CollisionShape3D/MeshInstance3D/BulletSource")
+input_handler = NodePath("PlayerInputHandler")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_mm66v")
 
-[node name="OrbitalCamera" parent="." instance=ExtResource("2_iejax")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.716, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
 mesh = SubResource("BoxMesh_gn7qv")
+skeleton = NodePath("../..")
 
-[node name="BulletSource" type="Node3D" parent="MeshInstance3D"]
+[node name="BulletSource" type="Node3D" parent="CollisionShape3D/MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.28324)
 script = ExtResource("3_dan72")
 
-[node name="Player_HUD" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("4_ja5l6")
+[node name="OrbitalCamera" parent="." instance=ExtResource("2_iejax")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.716, 0)
 
 [node name="PlayerInputHandler" type="Node" parent="."]
 script = ExtResource("5_qo7sf")
+
+[node name="PlayerHUD" parent="." instance=ExtResource("6_jp61w")]
+
+[node name="PlayerBodyHandler" type="Node" parent="." node_paths=PackedStringArray("_player", "_player_mesh", "_player_collision_shape", "input_handler")]
+script = ExtResource("6_p31lb")
+_player = NodePath("..")
+_player_mesh = NodePath("../CollisionShape3D/MeshInstance3D")
+_player_collision_shape = NodePath("../CollisionShape3D")
+input_handler = NodePath("../PlayerInputHandler")
 
 [connection signal="on_player_bullet_fire" from="PlayerInputHandler" to="." method="_on_player_bullet_fire"]
 [connection signal="on_player_jump_input" from="PlayerInputHandler" to="." method="_on_player_jump_input"]

@@ -17,6 +17,8 @@ class_name CharacterBodyEntity3D extends CharacterBody3D
 
 var _entity = Entity.new()
 
+signal on_died
+
 func _ready():
 	add_child(_entity)
 	_entity.on_death.connect(_on_death)
@@ -27,29 +29,25 @@ func get_health() -> float:
 
 func set_health(new_health: float) -> void:
 	_entity.health = new_health
-	_health_check()
+	_entity._health_check()
 
 func damage(damage_amount: float) -> void:
 	_entity.health -= damage_amount
-	_health_check()
+	_entity._health_check()
 
 func heal(heal_amount: float) -> void:
 	_entity.health += heal_amount
-	_health_check()
+	_entity._health_check()
 
 func kill():
 	_entity.health = 0
-	_health_check()
-
-func _health_check():
-	if _entity.health <= 0:
-		_on_death()
-
-func _on_death():
-	pass
+	_entity._health_check()
 
 func is_stunned():
 	return _entity.stunned
 
 func stun(stun_time):
 	_entity.stun(stun_time)
+
+func _on_death():
+	on_died.emit()

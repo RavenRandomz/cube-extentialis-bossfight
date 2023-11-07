@@ -1,7 +1,6 @@
 class_name PlayerBodyHandler extends Node
 
 @export var _player:Player
-@export var _player_mesh:MeshInstance3D
 @export var _player_collision_shape:CollisionShape3D
 # @export var _player_camera:Node3D
 var body_turn_speed = 10

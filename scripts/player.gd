@@ -10,7 +10,9 @@ extends CharacterBody3D
 
 @export var min_health: float = 0
 @export var max_health: float = 1000
-@export var bulletSource: Node3D
+@export var bullet_source: BasicBulletSource 
+
+var player_body_handler:PlayerBodyHandler
 
 var _stunned: bool = false
 
@@ -60,6 +62,8 @@ func stun(stun_time):
 func is_stunned():
 	return _stunned
 
+func _init():
+	pass
 
 func _ready():
 	display.set_health_bar_range(min_health, max_health)
@@ -110,12 +114,7 @@ func _handle_input_logic(translational_input, delta):
 
 func _handle_bullet_firing(delta):
 	if Input.is_action_pressed("player_fire_bullet"):
-		var bullet: RigidBody3D = basic_bullet.instantiate()
-		print(bulletSource.transform)
-		bullet.global_position = bulletSource.global_position
-		bullet.transform.basis = bulletSource.global_transform.basis
-		bullet.fire()
-		get_parent().add_child(bullet)
+		bullet_source.fire()
 
 func _handle_translational_motion_logic(translational_input, delta):
 	var direction_basis = (camera.transform.basis * Vector3(translational_input.x, 0, translational_input.y)).normalized()

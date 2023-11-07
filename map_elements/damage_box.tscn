@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://cy4egh8xged8"]
+
+[ext_resource type="Script" path="res://scripts/damage_box.gd" id="1_hrgfh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pdxfl"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ahr4w"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a62fd"]
+margin = 0.0
+size = Vector3(1.1, 1.1, 1.1)
+
+[node name="DamageBox2" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.2601, -1.35198, -3.95684)
+script = ExtResource("1_hrgfh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_pdxfl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_ahr4w")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_a62fd")
+
+[connection signal="body_shape_entered" from="Area3D" to="." method="_on_area_3d_body_shape_entered"]

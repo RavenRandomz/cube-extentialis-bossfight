@@ -14,6 +14,12 @@ class_name CharacterBodyEntity3D extends CharacterBody3D
 # (A parent Entity that inherits Node3D would mean that the player body is in the Node3D)
 # That is on the scene tree. So if the player has to be moved around, the Node3D parent would have to be changed.
 # Or that node would ismply be "disembodied" while the body is transferred to moving platforms and whatnot.
+@export var health:float = 1000:
+	get:
+		return _entity.get_health()
+	set(new_health): 
+		_entity.set_health(new_health)
+
 
 var _entity = Entity.new()
 

@@ -7,7 +7,6 @@ func _init (parent_player:Player):
 	_player = parent_player
 
 func controlled_translational_motion(direction, _delta):
-	var speed = _player.speed
 	var velocity = direction * speed
 	if direction:
 		_player.velocity.x = velocity.x

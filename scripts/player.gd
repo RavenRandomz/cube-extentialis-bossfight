@@ -15,6 +15,7 @@ extends CharacterBodyEntity3D
 var player_movement_handler = PlayerMovementHandler.new(self)
 
 var basic_bullet = preload("res://projectile/basic_bullet.tscn")
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @export var speed:float = 5.0:
 	get:
@@ -25,11 +26,11 @@ var basic_bullet = preload("res://projectile/basic_bullet.tscn")
 @export var jump_speed:float = 10.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
 	display.set_health_bar_range(min_health, max_health)
 	display.update_health_bar(health)
+	add_child(player_movement_handler)
 
 func _physics_process(delta):
 	var translational_input= Input.get_vector("player_strafeleft", "player_straferight", "player_forward", "player_backward")

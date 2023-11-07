@@ -81,10 +81,12 @@ func _handle_input_logic(translational_input, delta):
 		player_movement_handler.controlled_translational_motion(direction_basis)
 
 func _on_player_bullet_fire():
-	bullet_source.fire()
+	if (not is_stunned()):
+		bullet_source.fire()
 
 func _on_player_jump_input():
-	player_movement_handler.jump()
+	if (not is_stunned()):
+		player_movement_handler.jump()
 
 func _on_translational_motion_input(translational_input_map):
-	print (translational_input_map)
+	pass

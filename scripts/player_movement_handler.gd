@@ -17,5 +17,11 @@ func controlled_translational_motion(direction, _delta):
 		_player.velocity.z = move_toward(_player.velocity.z, 0, speed)
 
 func jump(delta):
+		pass
+
+func _gravity_pull(delta):
 	if not _player.is_on_floor():
 		_player.velocity.y -= _player.gravity * delta
+
+func _physics_process(delta):
+	_gravity_pull(delta)

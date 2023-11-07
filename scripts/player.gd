@@ -24,41 +24,6 @@ const JUMP_VELOCITY = 10
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-func get_health() -> float:
-	return health
-
-func set_health(new_health: float) -> void:
-	health = new_health
-	_health_check()
-
-func damage(damage_amount: float) -> void:
-	health -= damage_amount
-	_health_check()
-
-func heal(heal_amount: float) -> void:
-	health += heal_amount
-	_health_check()
-
-func kill():
-	health = 0
-	_health_check()
-
-func _health_check():
-	display.update_health_bar(health)
-	if health <= 0:
-		_on_death()
-
-func _on_death():
-	pass
-
-# Stun time in seconds
-func stun(stun_time):
-	if not _stunned:
-		_stunned = true
-		await get_tree().create_timer(stun_time).timeout
-		_stunned = false
-
-
 func is_stunned():
 	return _stunned
 

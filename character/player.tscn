@@ -36,13 +36,13 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.7
 [node name="PlayerInputHandler" type="Node" parent="."]
 script = ExtResource("5_qo7sf")
 
-[node name="PlayerHUD" parent="." instance=ExtResource("6_jp61w")]
-
 [node name="PlayerBodyHandler" type="Node" parent="." node_paths=PackedStringArray("_player", "_player_collision_shape", "input_handler")]
 script = ExtResource("6_p31lb")
 _player = NodePath("..")
 _player_collision_shape = NodePath("../CollisionShape3D")
 input_handler = NodePath("../PlayerInputHandler")
+
+[node name="PlayerHUD" parent="." instance=ExtResource("6_jp61w")]
 
 [connection signal="on_player_bullet_fire" from="PlayerInputHandler" to="." method="_on_player_bullet_fire"]
 [connection signal="on_player_jump_input" from="PlayerInputHandler" to="." method="_on_player_jump_input"]

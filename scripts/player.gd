@@ -23,7 +23,12 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 	set(new_speed): 
 		player_movement_handler.speed = new_speed
 
-@export var jump_speed:float = 10.0
+@export var jump_speed:float = 10.0:
+	get:
+		return player_movement_handler.jump_speed
+	set(new_jump_speed):
+		player_movement_handler.jump_speed = new_jump_speed
+
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 

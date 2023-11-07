@@ -1,5 +1,5 @@
 class_name Player
-extends CharacterBody3D
+extends CharacterBodyEntity3D
 
 @export var health: float = 1000
 @export var camera: Node3D

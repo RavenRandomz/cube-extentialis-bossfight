@@ -15,8 +15,6 @@ class_name Entity extends Node
 # That is on the scene tree. So if the player has to be moved around, the Node3D parent would have to be changed.
 # Or that node would ismply be "disembodied" while the body is transferred to moving platforms and whatnot.
 
-
-
 @export var max_health = 1000
 @export var min_health = 0
 var health = 1000
@@ -24,7 +22,6 @@ var stunned = false
 
 # Used so whenever death happens, the parent compositor class can decide white to do on death
 signal on_death
-
 
 func _init(starting_health:float = 1000):
 	health = starting_health

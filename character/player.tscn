@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bnlvq0ut74cfd"]
+[gd_scene load_steps=8 format=3 uid="uid://bnlvq0ut74cfd"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_tb1br"]
 [ext_resource type="PackedScene" uid="uid://2bmn74221edj" path="res://character/orbital_camera.tscn" id="2_iejax"]
 [ext_resource type="Script" path="res://scripts/basic_bullet_source.gd" id="3_dan72"]
 [ext_resource type="Script" path="res://scripts/player_hud.gd" id="4_ja5l6"]
+[ext_resource type="Script" path="res://scripts/player_input_handler.gd" id="5_qo7sf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mm66v"]
 
@@ -36,3 +37,10 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("4_ja5l6")
+
+[node name="PlayerInputHandler" type="Node" parent="."]
+script = ExtResource("5_qo7sf")
+
+[connection signal="on_player_bullet_fire" from="PlayerInputHandler" to="." method="_on_player_bullet_fire"]
+[connection signal="on_player_jump_input" from="PlayerInputHandler" to="." method="_on_player_jump_input"]
+[connection signal="on_translational_motion_input" from="PlayerInputHandler" to="." method="_on_translational_motion_input"]

@@ -86,3 +86,18 @@ func _handle_jump_logic(delta):
 	# Handle Jump.
 	if Input.is_action_just_pressed("player_jump") and is_on_floor():
 		velocity.y = jump_speed
+
+
+func _on_player_bullet_fire():
+	print("Bullet Fire")
+	pass # Replace with function body.
+
+
+func _on_player_jump_input():
+	print("Jump Signal")
+	pass # Replace with function body.
+
+
+func _on_translational_motion_input(translational_input_map):
+	print (translational_input_map)
+	pass # Replace with function body.

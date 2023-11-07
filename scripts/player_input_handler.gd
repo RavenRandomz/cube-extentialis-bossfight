@@ -5,13 +5,17 @@ signal on_translational_motion_input(translational_input_map:Vector3)
 signal on_player_jump_input
 signal on_player_bullet_fire
 
+func get_translational_input_map():
+	return Input.get_vector("player_strafeleft", "player_straferight", "player_forward", "player_backward")
+
 func _process(_delta):
 	_report_inputs()
 
 func _report_inputs(): 
 	if _translational_input_active():
-		var translational_input= Input.get_vector("player_strafeleft", "player_straferight", "player_forward", "player_backward")
-		on_translational_motion_input.emit(translational_input)
+		on_translational_motion_input.emit(get_translational_input_map())
+	else:
+		on_translational_motion_input.emit(Vector2.ZERO)
 
 	if _jump_input_active():
 		on_player_jump_input.emit()

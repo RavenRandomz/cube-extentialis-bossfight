@@ -59,11 +59,9 @@ func _on_death():
 # Stun time in seconds
 func stun(stun_time):
 	if not stunned:
-		print("Stun!!")
 		stunned = true
 		var tree = get_tree()
 		print(tree)
 		await get_tree().create_timer(stun_time).timeout
-		print("Unstun!!")
 		stunned = false
 

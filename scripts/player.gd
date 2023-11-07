@@ -39,8 +39,6 @@ func _ready():
 	add_child(player_movement_handler)
 
 func _physics_process(delta):
-	var translational_input= Input.get_vector("player_strafeleft", "player_straferight", "player_forward", "player_backward")
-
 	_player_view_rotation_sync(translational_input, delta)
 
 	move_and_slide()
@@ -69,6 +67,7 @@ func _translational_input_pressed():
 	or Input.is_action_pressed("player_backward")\
 	or Input.is_action_pressed("player_strafeleft")\
 	or Input.is_action_pressed("player_straferight")
+
 
 func _on_player_bullet_fire():
 	if (not is_stunned()):

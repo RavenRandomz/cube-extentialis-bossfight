@@ -111,8 +111,10 @@ func _handle_input_logic(translational_input, delta):
 func _handle_bullet_firing(delta):
 	if Input.is_action_pressed("player_fire_bullet"):
 		var bullet: RigidBody3D = basic_bullet.instantiate()
-		bullet.transform.basis = bulletSource.transform.basis
+		print(bulletSource.transform)
 		bullet.global_position = bulletSource.global_position
+		bullet.transform.basis = bulletSource.global_transform.basis
+		bullet.fire()
 		get_parent().add_child(bullet)
 
 func _handle_translational_motion_logic(translational_input, delta):

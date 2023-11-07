@@ -12,12 +12,12 @@ extends CharacterBodyEntity3D
 @export var max_health: float = 1000
 @export var bullet_source: BasicBulletSource 
 
-var player_body_handler:PlayerBodyHandler
+var player_movement_handler = PlayerMovementHandler.new(self)
 
 var basic_bullet = preload("res://projectile/basic_bullet.tscn")
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 10
+@export var speed:float = 5.0
+@export var jump_speed:float = 10.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -66,26 +66,16 @@ func _translational_input_pressed():
 func _handle_input_logic(translational_input, delta): 
 	_handle_jump_logic(delta)
 	if not is_stunned():
-		_handle_translational_motion_logic(translational_input, delta)
+		var direction_basis = (camera.transform.basis * Vector3(translational_input.x, 0, translational_input.y)).normalized()
+		player_movement_handler.controlled_translational_motion(direction_basis, delta)
 		_handle_bullet_firing(delta)
 
 func _handle_bullet_firing(delta):
 	if Input.is_action_pressed("player_fire_bullet"):
 		bullet_source.fire()
 
-func _handle_translational_motion_logic(translational_input, delta):
-	var direction_basis = (camera.transform.basis * Vector3(translational_input.x, 0, translational_input.y)).normalized()
-	if direction_basis:
-		velocity.x = direction_basis.x * SPEED
-		velocity.z = direction_basis.z * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 func _handle_jump_logic(delta):
-	if not is_on_floor():
-		velocity.y -= gravity * delta
-
 	# Handle Jump.
 	if Input.is_action_just_pressed("player_jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+		velocity.y = jump_speed

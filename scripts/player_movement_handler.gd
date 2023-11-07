@@ -7,7 +7,7 @@ var jump_speed = 10
 func _init (parent_player:Player):
 	_player = parent_player
 
-func controlled_translational_motion(direction, _delta):
+func controlled_translational_motion(direction):
 	var velocity = direction * speed
 	if direction:
 		_player.velocity.x = velocity.x
@@ -17,7 +17,8 @@ func controlled_translational_motion(direction, _delta):
 		_player.velocity.z = move_toward(_player.velocity.z, 0, speed)
 
 func jump():
-	pass
+	if (_player.is_on_floor()):
+		_player.velocity.y = jump_speed
 
 func _gravity_pull(delta):
 	if not _player.is_on_floor():

@@ -33,7 +33,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 3.98877)
 display = NodePath("../PlayerHUD")
 
 [node name="BasicBullet" parent="." instance=ExtResource("2_w4f3j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.3619, 0, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -17.3619, 2, 0)
 
 [node name="DamageBox2" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.2601, -1.35198, -3.95684)

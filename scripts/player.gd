@@ -28,6 +28,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 
 func _ready():
+	super._ready()
 	display.set_health_bar_range(min_health, max_health)
 	display.update_health_bar(health)
 	add_child(player_movement_handler)

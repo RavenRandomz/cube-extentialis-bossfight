@@ -18,6 +18,7 @@ class_name CharacterBodyEntity3D extends CharacterBody3D
 var _entity = Entity.new()
 
 func _ready():
+	add_child(_entity)
 	_entity.on_death.connect(_on_death)
 
 # Boilerplate functions

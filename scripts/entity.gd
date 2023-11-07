@@ -1,4 +1,4 @@
-class_name Entity
+class_name Entity extends Node
 
 # It is possible to simply define Entity as an extension of Node
 # However, that would mean that the Entity would have a "Body" (in this case
@@ -59,9 +59,11 @@ func _on_death():
 # Stun time in seconds
 func stun(stun_time):
 	if not stunned:
+		print("Stun!!")
 		stunned = true
-		var timer = Timer.new()
-		timer.start(stun_time)
-		await timer.timeout
+		var tree = get_tree()
+		print(tree)
+		await get_tree().create_timer(stun_time).timeout
+		print("Unstun!!")
 		stunned = false
 

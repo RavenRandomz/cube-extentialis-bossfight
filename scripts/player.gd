@@ -39,27 +39,8 @@ func _ready():
 	add_child(player_movement_handler)
 
 func _physics_process(delta):
-	_player_view_rotation_sync(translational_input, delta)
-
+	# _player_view_rotation_sync(get_desired_movement_direction(), delta)
 	move_and_slide()
-
-func _player_view_rotation_sync(translational_input, delta):
-	var direction_basis = (camera.transform.basis * Vector3(translational_input.x, 0, translational_input.y)).normalized()
-	var player_body_axis = playerBody.transform.basis.z
-	# var direction_basis = camera.transform.basis.x
-
-	# Relative to base node (currently the CharacterBody3D)
-
-	var angular_difference = player_body_axis.signed_angle_to(direction_basis, transform.basis.y)
-	var delta_rotation = lerp_angle(0, angular_difference, delta * playerTurnSpeed)
-	if _translational_input_pressed():
-		# This assumes that the y axis of the player and the camera are the same
-		# Find the angle between the player and the camera
-		# Use angular interpolation to figure out the set angle
-
-		
-		playerBody.rotate_object_local(Vector3.UP, delta_rotation)
-		playerCollsionMesh.rotate_object_local(Vector3.UP, delta_rotation)
 
 
 func _translational_input_pressed():
@@ -81,3 +62,7 @@ func _on_translational_motion_input(translational_input_map):
 	if (not is_stunned()):
 		var direction = (camera.transform.basis * Vector3(translational_input_map.x, 0, translational_input_map.y)).normalized()
 		player_movement_handler.controlled_translational_motion(direction)
+
+func get_desired_movement_direction():
+	var raw_translational_map = player_movement_handler.get_translational_input_map()
+	return (camera.transform.basis * Vector3(raw_translational_map.x, 0, raw_translational_map.y)).normalized()

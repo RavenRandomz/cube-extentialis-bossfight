@@ -6,6 +6,7 @@ extends RigidBody3D
 @export var timeout:float = 5
 
 func _ready():
+	add_to_group("bullet")
 	contact_monitor = true
 	max_contacts_reported = 1
 	linear_velocity = transform.basis.z * speed

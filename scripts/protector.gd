@@ -15,6 +15,8 @@ func _physics_process(delta):
 	if (not _target == null):
 		var force = _get_direction_to_target() * _chasing_force
 		apply_central_force(force)
+	else:
+		_stop_motion()
 
 
 func _get_direction_to_target():

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bhlupu2c6re12"]
 
-[ext_resource type="Script" path="res://scripts/rigid_body_entity_3d.gd" id="1_hy8ne"]
+[ext_resource type="Script" path="res://scripts/protector.gd" id="1_b4tyy"]
 [ext_resource type="ArrayMesh" uid="uid://chdbs6xw243tl" path="res://models/icosahedron.obj" id="2_xb1oo"]
 [ext_resource type="PackedScene" uid="uid://cbqyv8m4anqef" path="res://utility/bullet_detector.tscn" id="3_cqmla"]
 
@@ -11,7 +11,10 @@ points = PackedVector3Array(-0.0258342, -0.519398, -0.831167, 0.0259067, 0.51937
 radius = 4.0
 
 [node name="Protector" type="RigidBody3D"]
-script = ExtResource("1_hy8ne")
+script = ExtResource("1_b4tyy")
+health = null
+min_health = null
+max_health = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_ib432")
@@ -24,3 +27,5 @@ skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BulletDetector"]
 shape = SubResource("SphereShape3D_3tjxj")
+
+[connection signal="bullet_entered" from="BulletDetector" to="." method="_on_bullet_detected"]

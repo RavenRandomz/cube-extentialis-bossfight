@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c8tcdkqy05qfo"]
+[gd_scene load_steps=8 format=3 uid="uid://c8tcdkqy05qfo"]
 
 [ext_resource type="PackedScene" uid="uid://bnlvq0ut74cfd" path="res://character/player.tscn" id="1_tsfjo"]
 [ext_resource type="PackedScene" uid="uid://db8eme6e062u" path="res://enemies/boss.tscn" id="2_6tpxl"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cy4egh8xged8" path="res://map_elements/damage_box.tscn" id="3_nuhrv"]
 [ext_resource type="PackedScene" uid="uid://cmmulbrsy1iwr" path="res://GUI/player_hud.tscn" id="4_wpvqo"]
 [ext_resource type="PackedScene" uid="uid://cr5t0ilnjw5f3" path="res://GUI/boss_fight_hud.tscn" id="5_64iom"]
+[ext_resource type="PackedScene" uid="uid://bhlupu2c6re12" path="res://enemies/protector.tscn" id="7_kegd4"]
 
 [node name="world" type="Node3D"]
 
@@ -37,3 +38,6 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -17.36
 display = NodePath("../BossFightHUD")
 
 [node name="Node" type="Node" parent="."]
+
+[node name="Protector" parent="." instance=ExtResource("7_kegd4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.143, 0, 0)

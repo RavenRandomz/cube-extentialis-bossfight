@@ -12,4 +12,4 @@ func _process(delta):
 
 
 func _on_bullet_detected(bullet:Node3D):
-	print(bullet)
+	pass

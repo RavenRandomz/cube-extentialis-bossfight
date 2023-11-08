@@ -12,9 +12,6 @@ radius = 4.0
 
 [node name="Protector" type="RigidBody3D"]
 script = ExtResource("1_b4tyy")
-health = null
-min_health = null
-max_health = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_ib432")

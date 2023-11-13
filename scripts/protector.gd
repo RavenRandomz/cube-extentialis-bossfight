@@ -19,6 +19,9 @@ func get_territory():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+	_state._physics_process(delta)
+
+func _old_physics_process(_delta):
 	if (not _target == null):
 		var force = _get_direction_to_target() * _chasing_force
 		apply_central_force(force)

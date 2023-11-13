@@ -12,6 +12,8 @@ var _roam_force:float = 0.5:
 	set(force):
 		_state_roam.set_roam_force(force)
 
+var _rotation_force = 1;
+@export var _max_rotation_speed = 10;
 # States
 @onready var _state_roam = ProtectorStateRoam.new(self)
 @onready var _state_chase = ProtectorStateChase.new(self)
@@ -23,9 +25,10 @@ enum State {
 	COME_BACK
 }
 
-func _integrate_forces(state:PhysicsDirectBodyState3D):
-	_state._integrate_forces(state)
-	pass
+func _integrate_forces(physics_state:PhysicsDirectBodyState3D):
+	_state._integrate_forces(physics_state)
+	if(physics_state.angular_velocity.length() > _max_rotation_speed):
+		physics_state.angular_velocity = physics_state.angular_velocity.normalized() * _max_rotation_speed
 
 func set_state(new_state:State):
 	state = new_state
@@ -40,6 +43,7 @@ func set_state(new_state:State):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	add_constant_torque(transform.basis.y * _rotation_force)
 	set_state(State.ROAM)
 
 # Expects global coordinates

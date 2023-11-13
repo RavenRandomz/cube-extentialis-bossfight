@@ -3,6 +3,7 @@ class_name Protector extends RigidBodyEntity3D
 @export var _chasing_timeout:float = 5
 var _chasing = false
 var _target: Node3D
+var _territory: BoxTerritory
 var _chasing_force: float = 40
 
 # Called when the node enters the scene tree for the first time.
@@ -12,6 +13,9 @@ func _ready():
 # Expects global coordinates
 func is_near(point:Vector3, distance:float):
 	return point.distance_to(global_position) < distance
+
+func get_territory():
+	return _territory
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):

@@ -5,21 +5,25 @@ class_name Protector extends RigidBodyEntity3D
 var _chasing = false
 var _target: Node3D
 var _chasing_force: float = 40
-var _roam_force:float = 40:
+var _roam_force:float = 0.5:
 	get:
 		return _state_roam.get_roam_force()
 	set(force):
 		_state_roam.set_roam_force(force)
 
 # States
-var _state:ProtectorState = _state_roam
-var _state_roam = ProtectorStateRoam.new(self, _roam_force)
+@onready var _state_roam = ProtectorStateRoam.new(self)
+@onready var _state:ProtectorState = _state_roam
 
 enum State {
 	ROAM,
 	CHASE,
 	COME_BACK
 }
+
+func _integrate_forces(state:PhysicsDirectBodyState3D):
+	_state._integrate_forces(state)
+	pass
 
 func set_state(state:State):
 	match state:
@@ -29,9 +33,11 @@ func set_state(state:State):
 			pass
 		State.COME_BACK:
 			pass
+	_state._on_ready()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	set_state(State.ROAM)
 
 	pass # Replace with function body.
 

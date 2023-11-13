@@ -17,9 +17,10 @@ func _on_area_3d_body_shape_entered(body_rid:RID, body:Node3D, body_shape_index:
 		var physics_body_cast:PhysicsBody3D = body
 		if body.has_method("stun"):
 			body.stun(stun_time)
-		_push_body_away(body)
+	if (body.has_method("pushback")):
+		body.pushback(_generate_pushback_force(body))
 
-func _push_body_away(body: PhysicsBody3D):
+func _generate_pushback_force(body: PhysicsBody3D):
 
 	# Imagine an arrow pointing from the center of the box to the colliding body
 	var center = global_position
@@ -28,4 +29,4 @@ func _push_body_away(body: PhysicsBody3D):
 	var coord_difference: Vector3 = body_center - center 
 	var push_direction: Vector3 = coord_difference.normalized()
 	var push_vector = push_direction * pushback_force
-	body.velocity += push_vector
+	return push_vector

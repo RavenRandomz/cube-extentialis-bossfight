@@ -33,7 +33,7 @@ class_name RigidBodyEntity3D extends RigidBody3D
 	set(new_max_health): 
 		_entity.min_health = new_max_health
 
-var _entity = Entity.new(get_tree())
+@onready var _entity = Entity.new(get_tree())
 
 signal on_died
 

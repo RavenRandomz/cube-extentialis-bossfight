@@ -26,7 +26,7 @@ func _integrate_forces(state):
 
 func increment_bullet_count():
 	print(_bullet_count)
-	++_bullet_count
+	_bullet_count += 1
 
 func reset_bullet_count():
 	_bullet_count = 0

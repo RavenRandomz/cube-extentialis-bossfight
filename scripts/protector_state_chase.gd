@@ -1,6 +1,5 @@
 class_name ProtectorStateChase extends ProtectorState
 
-var _target:Node3D
 var _chasing_force:float = 40
 var _captured_cooldown:float = 1
 var _chasing_timeout:float = 2

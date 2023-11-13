@@ -15,3 +15,9 @@ func _physics_process(_delta):
 	if (_protector.is_near(_roam_checkpoint, _checkpoint_change_threshold)):
 		# Set the new checkpoint to a random point within the territory that Protector Occupies
 		_roam_checkpoint = _protector.get_territory().generate_random_internal_position()
+
+func set_roam_force(force:float) -> void:
+	_roam_force = force
+
+func get_roam_force() -> float:
+	return _roam_force

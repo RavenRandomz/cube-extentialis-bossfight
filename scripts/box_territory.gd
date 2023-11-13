@@ -3,7 +3,8 @@ class_name BoxTerritory extends Area3D
 signal watched_exited
 signal watched_entered
 
-@onready var shape: BoxShape3D = get_node("CollisionShape3D").get_shape()
+@export var collision_shape:CollisionShape3D
+@onready var shape:BoxShape3D = collision_shape.shape
 
 var watch_list = []
 
@@ -18,6 +19,7 @@ func generate_random_internal_position() -> Vector3:
 	var offset = Vector3(randf_range(-shape.size.x, shape.size.x), 
 						randf_range(-shape.size.y, shape.size.y),
 						randf_range(-shape.size.z, shape.size.z))
+	print(origin+offset)
 	return origin + offset
 
 func add_to_watchlist(watchee):

@@ -11,6 +11,7 @@ points = PackedVector3Array(-0.0258342, -0.519398, -0.831167, 0.0259067, 0.51937
 radius = 4.0
 
 [node name="Protector" type="RigidBody3D"]
+mass = 0.25
 gravity_scale = 0.0
 script = ExtResource("1_b4tyy")
 

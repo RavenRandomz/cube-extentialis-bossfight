@@ -5,6 +5,7 @@ class_name Protector extends RigidBodyEntity3D
 var _chasing = false
 var _target: Node3D
 var _chasing_force: float = 40
+var state:State = State.ROAM
 var _roam_force:float = 0.5:
 	get:
 		return _state_roam.get_roam_force()
@@ -26,8 +27,9 @@ func _integrate_forces(state:PhysicsDirectBodyState3D):
 	_state._integrate_forces(state)
 	pass
 
-func set_state(state:State):
-	match state:
+func set_state(new_state:State):
+	state = new_state
+	match new_state:
 		State.ROAM:
 			_state = _state_roam
 		State.CHASE:
@@ -51,12 +53,14 @@ func _physics_process(delta):
 	_state._physics_process(delta)
 
 func _on_bullet_detected(bullet:Node3D):
-	set_state(State.CHASE)
+	if (not state == State.CHASE):
+		set_state(State.CHASE)
 	_target = bullet
 
 func _on_body_entered(body):
 	if body.is_in_group("bullet"):
 		_state._on_bullet_captured(body)
+		_state_chase.increment_bullet_count()
 		_target = null
 		
 

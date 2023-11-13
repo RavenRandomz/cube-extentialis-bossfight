@@ -1,9 +1,9 @@
 class_name Protector extends RigidBodyEntity3D
 
 @export var _chasing_timeout:float = 5
+@export var _territory: BoxTerritory
 var _chasing = false
 var _target: Node3D
-var _territory: BoxTerritory
 var _chasing_force: float = 40
 var _roam_force:float = 40:
 	get:

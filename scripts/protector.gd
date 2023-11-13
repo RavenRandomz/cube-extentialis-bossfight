@@ -5,9 +5,34 @@ var _chasing = false
 var _target: Node3D
 var _territory: BoxTerritory
 var _chasing_force: float = 40
+var _roam_force:float = 40:
+	get:
+		return _state_roam.get_roam_force()
+	set(force):
+		_state_roam.set_roam_force(force)
+
+# States
+var _state:ProtectorState = _state_roam
+var _state_roam = ProtectorStateRoam.new(self, _roam_force)
+
+enum State {
+	ROAM,
+	CHASE,
+	COME_BACK
+}
+
+func set_state(state:State):
+	match state:
+		State.ROAM:
+			_state = _state_roam
+		State.CHASE:
+			pass
+		State.COME_BACK:
+			pass
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+
 	pass # Replace with function body.
 
 # Expects global coordinates

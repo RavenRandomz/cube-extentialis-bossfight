@@ -2,8 +2,8 @@ class_name ProtectorStateRoam extends ProtectorState
 
 var _roam_checkpoint: Vector3
 var _checkpoint_change_threshold: float = 1# How close the protector is to trigger a checkpoint change
-var _roam_force: float = 1
-var _max_speed: float = 5
+var _roam_force: float = 0.40
+var _max_speed: float = 8
 
 func _init(protector:Protector):	
 	_protector = protector
@@ -24,7 +24,6 @@ func _physics_process(_delta):
 
 # Called from protector
 func _integrate_forces(state:PhysicsDirectBodyState3D):
-	print(state.linear_velocity)
 	if (state.linear_velocity.length() > _max_speed):
 		state.linear_velocity.x = clamp(state.linear_velocity.x, 0, _max_speed)
 		state.linear_velocity.y = clamp(state.linear_velocity.y, 0, _max_speed)

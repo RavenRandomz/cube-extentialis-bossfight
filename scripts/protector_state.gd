@@ -1,9 +1,9 @@
 class_name ProtectorState extends RigidBodyEntity3D
 
-var protector: Protector
+var _protector: Protector
 
 func _init(prot:Protector):
-	protector = prot
+	_protector = prot
 
 func _process(delta):
 	pass

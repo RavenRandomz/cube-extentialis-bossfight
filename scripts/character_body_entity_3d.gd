@@ -32,7 +32,7 @@ class_name CharacterBodyEntity3D extends CharacterBody3D
 	set(new_max_health): 
 		_entity.min_health = new_max_health
 
-var _entity = Entity.new()
+var _entity = Entity.new(get_tree())
 
 signal on_died
 

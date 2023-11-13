@@ -17,13 +17,16 @@ class_name Entity extends Node
 
 @export var max_health = 1000
 @export var min_health = 0
+var _scene_tree:SceneTree
 var health = 1000
 var stunned = false
 
 # Used so whenever death happens, the parent compositor class can decide white to do on death
 signal on_death
 
-func _init(starting_health:float = 1000):
+
+func _init(scene_tree, starting_health:float = 1000):
+	_scene_tree = scene_tree
 	health = starting_health
 	
 
@@ -57,8 +60,6 @@ func _on_death():
 func stun(stun_time):
 	if not stunned:
 		stunned = true
-		var tree = get_tree()
-		print(tree)
-		await get_tree().create_timer(stun_time).timeout
+		await _scene_tree.create_timer(stun_time).timeout
 		stunned = false
 

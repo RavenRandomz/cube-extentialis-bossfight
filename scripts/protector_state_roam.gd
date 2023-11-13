@@ -8,7 +8,7 @@ var _max_speed: float = 8
 func _init(protector:Protector):	
 	_protector = protector
 
-func _on_ready():
+func _ready():
 	print(_roam_checkpoint)
 	_new_roam_checkpoint()
 

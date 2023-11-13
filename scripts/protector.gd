@@ -34,7 +34,7 @@ func set_state(state:State):
 			_state = _state_chase
 		State.COME_BACK:
 			pass
-	_state._on_ready()
+	_state._ready()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

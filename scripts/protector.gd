@@ -9,6 +9,9 @@ var _chasing_force: float = 40
 func _ready():
 	pass # Replace with function body.
 
+# Expects global coordinates
+func is_near(point:Vector3, distance:float):
+	return point.distance_to(global_position) < distance
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):

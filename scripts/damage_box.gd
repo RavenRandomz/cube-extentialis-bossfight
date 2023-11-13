@@ -14,7 +14,6 @@ func _process(delta):
 func _on_area_3d_body_shape_entered(_body_rid:RID, body:Node3D, _body_shape_index:int, _local_shape_index:int):
 	if (body.has_method("damage") and (body is PhysicsBody3D)):
 		body.damage(damage)
-		var physics_body_cast:PhysicsBody3D = body
 		if body.has_method("stun"):
 			body.stun(stun_time)
 	if (body.has_method("pushback")):

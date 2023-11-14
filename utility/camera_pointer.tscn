@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dv3lomnmet43n"]
+
+[ext_resource type="Script" path="res://scripts/camera_poiniter.gd" id="1_ucgp3"]
+
+[node name="CameraFacer" type="Node3D" node_paths=PackedStringArray("_camera")]
+script = ExtResource("1_ucgp3")
+_camera = NodePath("")

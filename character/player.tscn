@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bnlvq0ut74cfd"]
+[gd_scene load_steps=10 format=3 uid="uid://bnlvq0ut74cfd"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_tb1br"]
 [ext_resource type="PackedScene" uid="uid://2bmn74221edj" path="res://character/orbital_camera.tscn" id="2_iejax"]
 [ext_resource type="Script" path="res://scripts/basic_bullet_source.gd" id="3_dan72"]
+[ext_resource type="Script" path="res://scripts/camera_poiniter.gd" id="4_wj3px"]
 [ext_resource type="Script" path="res://scripts/player_input_handler.gd" id="5_qo7sf"]
 [ext_resource type="PackedScene" uid="uid://cmmulbrsy1iwr" path="res://GUI/player_hud.tscn" id="6_jp61w"]
 [ext_resource type="Script" path="res://scripts/player_body_handler.gd" id="6_p31lb"]
@@ -33,6 +34,10 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.7
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.12184e-07, -0.716, -1.28324)
 script = ExtResource("3_dan72")
 
+[node name="CameraFacer" type="Node3D" parent="OrbitalCamera" node_paths=PackedStringArray("_camera")]
+script = ExtResource("4_wj3px")
+_camera = NodePath("../VerticalPivot/Camera")
+
 [node name="PlayerInputHandler" type="Node" parent="."]
 script = ExtResource("5_qo7sf")
 
@@ -47,3 +52,5 @@ input_handler = NodePath("../PlayerInputHandler")
 [connection signal="on_player_bullet_fire" from="PlayerInputHandler" to="." method="_on_player_bullet_fire"]
 [connection signal="on_player_jump_input" from="PlayerInputHandler" to="." method="_on_player_jump_input"]
 [connection signal="on_translational_motion_input" from="PlayerInputHandler" to="." method="_on_translational_motion_input"]
+
+[editable path="OrbitalCamera"]

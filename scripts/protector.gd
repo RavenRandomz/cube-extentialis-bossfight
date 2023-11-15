@@ -28,7 +28,7 @@ enum State {
 func _integrate_forces(physics_state:PhysicsDirectBodyState3D):
 	_state._integrate_forces(physics_state)
 	if(physics_state.angular_velocity.length() > _max_rotation_speed):
-		physics_state.angular_velocity = physics_state.angular_velocity.normalized() * _max_rotation_speed
+		physics_state.angular_velocity = physics_state.angular_velocity.normalized() * (_max_rotation_speed - 1)
 
 func set_state(new_state:State):
 	state = new_state

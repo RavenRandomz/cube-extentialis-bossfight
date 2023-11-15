@@ -1,0 +1,2 @@
+class MinionStateAttack extends BasicMinionState
+

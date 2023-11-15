@@ -22,11 +22,14 @@ func set_state(state:State):
 			_current_state = State.IDLE	
 	_state._ready()
 
-func _on_player_entered(player:Player):
+func _physics_process(delta):
+	_state._physics_process(delta)
+	move_and_slide()
 
-	print(str(player) + "Entered")
+func _on_player_entered(player:Player):
+	set_state(State.ATTACK)
+	_state._set_target(player)
 
 
 func _on_player_exited(player:Player):
-	print(str(player) + "Exited")
-	pass # Replace with function body.
+	set_state(State.IDLE)

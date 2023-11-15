@@ -5,7 +5,7 @@ var _basic_minion:BasicMinion
 func _init(basic_minion):
 	_basic_minion = basic_minion
 
-func _set_target():
+func _set_target(target:Node3D):
 	pass
 
 func _on_ready():

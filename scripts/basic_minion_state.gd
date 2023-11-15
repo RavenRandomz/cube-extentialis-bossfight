@@ -5,6 +5,8 @@ var _basic_minion:BasicMinion
 func _init(basic_minion):
 	_basic_minion = basic_minion
 
+func _set_target():
+	pass
 
 func _on_ready():
 	pass

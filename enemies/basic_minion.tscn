@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://ykv65s4mm2ye"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_cex74"]
+[ext_resource type="Script" path="res://scripts/basic_minion.gd" id="1_fintc"]
 [ext_resource type="PackedScene" uid="uid://2bmn74221edj" path="res://character/orbital_camera.tscn" id="2_lo1xi"]
 [ext_resource type="PackedScene" uid="uid://dv3lomnmet43n" path="res://utility/camera_pointer.tscn" id="3_vyyal"]
 [ext_resource type="Script" path="res://scripts/basic_bullet_source.gd" id="4_3unn2"]
@@ -15,13 +15,8 @@
 [sub_resource type="BoxMesh" id="BoxMesh_ywnvw"]
 size = Vector3(0.5, 0.5, 0.5)
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "display", "bullet_source", "input_handler", "body_handler")]
-script = ExtResource("1_cex74")
-camera = NodePath("OrbitalCamera")
-display = NodePath("PlayerHUD")
-bullet_source = NodePath("OrbitalCamera/CameraFacer/BulletSource")
-input_handler = NodePath("PlayerInputHandler")
-body_handler = NodePath("PlayerBodyHandler")
+[node name="BasicMinion" type="CharacterBody3D"]
+script = ExtResource("1_fintc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_mm66v")

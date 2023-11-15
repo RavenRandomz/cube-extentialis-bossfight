@@ -41,6 +41,7 @@ display = NodePath("../BossFightHUD")
 
 [node name="BoxTerritory" parent="." instance=ExtResource("6_svkkm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, 0)
+rotation_edit_mode = 2
 
 [node name="CollisionShape3D" parent="BoxTerritory" index="0"]
 shape = SubResource("BoxShape3D_xy5mr")

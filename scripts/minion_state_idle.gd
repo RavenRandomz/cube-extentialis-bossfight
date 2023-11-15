@@ -1,2 +1,2 @@
-class_name MinionStateIdle extends BasicMinionState
+class_name BasicMinionStateIdle extends BasicMinionState
 

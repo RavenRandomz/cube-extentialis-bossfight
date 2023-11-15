@@ -1,12 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://ykv65s4mm2ye"]
+[gd_scene load_steps=8 format=3 uid="uid://ykv65s4mm2ye"]
 
 [ext_resource type="Script" path="res://scripts/basic_minion.gd" id="1_fintc"]
-[ext_resource type="PackedScene" uid="uid://2bmn74221edj" path="res://character/orbital_camera.tscn" id="2_lo1xi"]
-[ext_resource type="PackedScene" uid="uid://dv3lomnmet43n" path="res://utility/camera_pointer.tscn" id="3_vyyal"]
 [ext_resource type="Script" path="res://scripts/basic_bullet_source.gd" id="4_3unn2"]
-[ext_resource type="Script" path="res://scripts/player_input_handler.gd" id="5_ifb55"]
-[ext_resource type="Script" path="res://scripts/player_body_handler.gd" id="6_mvi6f"]
-[ext_resource type="PackedScene" uid="uid://cmmulbrsy1iwr" path="res://GUI/player_hud.tscn" id="7_wnne2"]
+[ext_resource type="Script" path="res://scripts/player_detector.gd" id="7_ajgd1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mm66v"]
 
@@ -14,6 +10,9 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_ywnvw"]
 size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_c1p5p"]
+radius = 3.0
 
 [node name="BasicMinion" type="CharacterBody3D"]
 script = ExtResource("1_fintc")
@@ -25,32 +24,21 @@ shape = SubResource("BoxShape3D_mm66v")
 mesh = SubResource("BoxMesh_gn7qv")
 skeleton = NodePath("../..")
 
-[node name="OrbitalCamera" parent="." instance=ExtResource("2_lo1xi")]
+[node name="Pivot" type="Node3D" parent="CollisionShape3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
 
-[node name="CameraFacer" parent="OrbitalCamera" node_paths=PackedStringArray("_camera") instance=ExtResource("3_vyyal")]
-_camera = NodePath("../VerticalPivot/Camera")
-
-[node name="BulletSource" type="Node3D" parent="OrbitalCamera/CameraFacer"]
+[node name="BulletSource" type="Node3D" parent="CollisionShape3D/Pivot"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.12184e-07, -0.716, -1.28324)
 script = ExtResource("4_3unn2")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="OrbitalCamera/CameraFacer/BulletSource"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D/Pivot/BulletSource"]
 mesh = SubResource("BoxMesh_ywnvw")
 
-[node name="PlayerInputHandler" type="Node" parent="."]
-script = ExtResource("5_ifb55")
+[node name="PlayerDetector" type="Area3D" parent="."]
+script = ExtResource("7_ajgd1")
 
-[node name="PlayerBodyHandler" type="Node" parent="." node_paths=PackedStringArray("_player", "_player_collision_shape", "input_handler")]
-script = ExtResource("6_mvi6f")
-_player = NodePath("..")
-_player_collision_shape = NodePath("../CollisionShape3D")
-input_handler = NodePath("../PlayerInputHandler")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetector"]
+shape = SubResource("SphereShape3D_c1p5p")
 
-[node name="PlayerHUD" parent="." instance=ExtResource("7_wnne2")]
-
-[connection signal="on_player_bullet_fire" from="PlayerInputHandler" to="." method="_on_player_bullet_fire"]
-[connection signal="on_player_jump_input" from="PlayerInputHandler" to="." method="_on_player_jump_input"]
-[connection signal="on_translational_motion_input" from="PlayerInputHandler" to="." method="_on_translational_motion_input"]
-
-[editable path="OrbitalCamera"]
+[connection signal="body_entered" from="PlayerDetector" to="PlayerDetector" method="_on_body_entered"]
+[connection signal="body_exited" from="PlayerDetector" to="PlayerDetector" method="_on_body_exited"]

@@ -1,2 +1,2 @@
-class MinionStateAttack extends BasicMinionState
+class_name MinionStateAttack extends BasicMinionState
 

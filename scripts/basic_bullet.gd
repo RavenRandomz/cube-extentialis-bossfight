@@ -4,11 +4,13 @@ extends RigidBody3D
 @export var damage: float = 100
 @export var _speed: float = 10
 @export var timeout:float = 5
+@export var spin_speed: float = 5
 
 func set_speed(speed:float):
 	_speed = speed
 
 func _ready():
+	angular_velocity = transform.basis.z * spin_speed
 	add_to_group("bullet")
 	contact_monitor = true
 	max_contacts_reported = 1

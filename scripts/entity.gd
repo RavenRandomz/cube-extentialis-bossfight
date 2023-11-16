@@ -50,11 +50,9 @@ func kill():
 	_health_check()
 
 func _health_check():
-	if health <= 0:
-		_on_death()
+	if health < min_health:
+		on_death.emit()
 
-func _on_death():
-	on_death.emit()
 
 # Stun time in seconds
 func stun(stun_time):

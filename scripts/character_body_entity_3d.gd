@@ -34,8 +34,6 @@ class_name CharacterBodyEntity3D extends CharacterBody3D
 
 @onready var _entity = Entity.new(get_tree())
 
-signal on_died
-
 func _ready():
 	add_child(_entity)
 	_entity.on_death.connect(_on_death)
@@ -67,4 +65,4 @@ func stun(stun_time):
 	_entity.stun(stun_time)
 
 func _on_death():
-	on_died.emit()
+	pass

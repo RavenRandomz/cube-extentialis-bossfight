@@ -1,7 +1,7 @@
 class_name BasicBullet
 extends RigidBody3D
 
-@export var damage: float = 100
+@export var damage: float = 10
 @export var _speed: float = 10
 @export var timeout:float = 5
 @export var spin_speed: float = 5

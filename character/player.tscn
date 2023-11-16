@@ -33,7 +33,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
 [node name="CameraFacer" parent="OrbitalCamera" node_paths=PackedStringArray("_camera") instance=ExtResource("3_scwjp")]
 _camera = NodePath("../VerticalPivot/Camera")
 
-[node name="BulletSource" parent="OrbitalCamera/CameraFacer" instance=ExtResource("4_pdcr7")]
+[node name="BulletSource" parent="OrbitalCamera/CameraFacer" node_paths=PackedStringArray("_blame_node") instance=ExtResource("4_pdcr7")]
+_blame_node = NodePath("../../..")
 
 [node name="PlayerInputHandler" type="Node" parent="."]
 script = ExtResource("5_qo7sf")

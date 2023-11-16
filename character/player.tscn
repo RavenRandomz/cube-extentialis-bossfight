@@ -1,9 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://bnlvq0ut74cfd"]
+[gd_scene load_steps=10 format=3 uid="uid://bnlvq0ut74cfd"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_tb1br"]
 [ext_resource type="PackedScene" uid="uid://2bmn74221edj" path="res://character/orbital_camera.tscn" id="2_iejax"]
-[ext_resource type="Script" path="res://scripts/basic_bullet_source.gd" id="3_dan72"]
 [ext_resource type="PackedScene" uid="uid://dv3lomnmet43n" path="res://utility/camera_pointer.tscn" id="3_scwjp"]
+[ext_resource type="PackedScene" uid="uid://042fxrjf3vsx" path="res://weapons/bullet_source.tscn" id="4_pdcr7"]
 [ext_resource type="Script" path="res://scripts/player_input_handler.gd" id="5_qo7sf"]
 [ext_resource type="PackedScene" uid="uid://cmmulbrsy1iwr" path="res://GUI/player_hud.tscn" id="6_jp61w"]
 [ext_resource type="Script" path="res://scripts/player_body_handler.gd" id="6_p31lb"]
@@ -11,9 +11,6 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_mm66v"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_gn7qv"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_ywnvw"]
-size = Vector3(0.5, 0.5, 0.5)
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "display", "bullet_source", "input_handler", "body_handler")]
 script = ExtResource("1_tb1br")
@@ -36,12 +33,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
 [node name="CameraFacer" parent="OrbitalCamera" node_paths=PackedStringArray("_camera") instance=ExtResource("3_scwjp")]
 _camera = NodePath("../VerticalPivot/Camera")
 
-[node name="BulletSource" type="Node3D" parent="OrbitalCamera/CameraFacer"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.12184e-07, -0.716, -1.28324)
-script = ExtResource("3_dan72")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="OrbitalCamera/CameraFacer/BulletSource"]
-mesh = SubResource("BoxMesh_ywnvw")
+[node name="BulletSource" parent="OrbitalCamera/CameraFacer" instance=ExtResource("4_pdcr7")]
 
 [node name="PlayerInputHandler" type="Node" parent="."]
 script = ExtResource("5_qo7sf")

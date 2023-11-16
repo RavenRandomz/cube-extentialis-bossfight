@@ -6,6 +6,14 @@ extends RigidBody3D
 @export var timeout:float = 5
 @export var spin_speed: float = 5
 
+var _source:Node3D
+
+func set_source(source:Node3D):
+	_source = source
+
+func get_source():
+	return _source
+
 func set_speed(speed:float):
 	_speed = speed
 

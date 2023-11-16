@@ -2,14 +2,17 @@ class_name BasicBullet
 extends RigidBody3D
 
 @export var damage: float = 100
-@export var speed: float = 10
+@export var _speed: float = 10
 @export var timeout:float = 5
+
+func set_speed(speed:float):
+	_speed = speed
 
 func _ready():
 	add_to_group("bullet")
 	contact_monitor = true
 	max_contacts_reported = 1
-	linear_velocity = transform.basis.z * speed
+	linear_velocity = transform.basis.z * _speed
 	await get_tree().create_timer(timeout).timeout
 	queue_free()
 

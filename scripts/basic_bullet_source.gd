@@ -12,7 +12,7 @@ func fire():
 	var bullet: BasicBullet = bullet_scene.instantiate()
 	if (not _firing):
 		_firing = true
-		bullet.set_set_source(_blame_node)
+		bullet.set_source(_blame_node)
 		bullet.global_position = global_position
 		bullet.transform.basis = global_transform.basis
 		get_tree().root.add_child(bullet)

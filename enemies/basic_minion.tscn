@@ -27,12 +27,11 @@ mesh = SubResource("BoxMesh_gn7qv")
 skeleton = NodePath("../..")
 
 [node name="Gun" type="Node3D" parent="CollisionShape3D" node_paths=PackedStringArray("_bullet_source")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
 script = ExtResource("2_n5o7j")
 _bullet_source = NodePath("BulletSource")
 
 [node name="BulletSource" type="Node3D" parent="CollisionShape3D/Gun"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.12184e-07, -0.716, -1.28324)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, -1.283)
 script = ExtResource("4_3unn2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D/Gun/BulletSource"]

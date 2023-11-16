@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://ykv65s4mm2ye"]
+[gd_scene load_steps=9 format=3 uid="uid://ykv65s4mm2ye"]
 
 [ext_resource type="Script" path="res://scripts/basic_minion.gd" id="1_fintc"]
+[ext_resource type="Script" path="res://weapons/gun.gd" id="2_n5o7j"]
 [ext_resource type="Script" path="res://scripts/basic_bullet_source.gd" id="4_3unn2"]
 [ext_resource type="Script" path="res://scripts/player_detector.gd" id="7_ajgd1"]
 
@@ -12,7 +13,7 @@
 size = Vector3(0.5, 0.5, 0.5)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_c1p5p"]
-radius = 3.0
+radius = 8.0
 
 [node name="BasicMinion" type="CharacterBody3D"]
 script = ExtResource("1_fintc")
@@ -24,14 +25,15 @@ shape = SubResource("BoxShape3D_mm66v")
 mesh = SubResource("BoxMesh_gn7qv")
 skeleton = NodePath("../..")
 
-[node name="Pivot" type="Node3D" parent="CollisionShape3D"]
+[node name="Gun" type="Node3D" parent="CollisionShape3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+script = ExtResource("2_n5o7j")
 
-[node name="BulletSource" type="Node3D" parent="CollisionShape3D/Pivot"]
+[node name="BulletSource" type="Node3D" parent="CollisionShape3D/Gun"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.12184e-07, -0.716, -1.28324)
 script = ExtResource("4_3unn2")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D/Pivot/BulletSource"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D/Gun/BulletSource"]
 mesh = SubResource("BoxMesh_ywnvw")
 
 [node name="PlayerDetector" type="Area3D" parent="."]

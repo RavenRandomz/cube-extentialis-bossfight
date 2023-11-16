@@ -29,7 +29,7 @@ mesh = SubResource("BoxMesh_gn7qv")
 skeleton = NodePath("../..")
 
 [node name="OrbitalCamera" parent="." instance=ExtResource("2_iejax")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0)
 
 [node name="CameraFacer" parent="OrbitalCamera" node_paths=PackedStringArray("_camera") instance=ExtResource("3_scwjp")]
 _camera = NodePath("../VerticalPivot/Camera")

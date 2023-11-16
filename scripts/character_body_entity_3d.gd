@@ -28,9 +28,9 @@ class_name CharacterBodyEntity3D extends CharacterBody3D
 
 @export var max_health:float = 1000:
 	get:
-		return _entity.min_health
+		return _entity.max_health
 	set(new_max_health): 
-		_entity.min_health = new_max_health
+		_entity.max_health = new_max_health
 
 @onready var _entity = Entity.new(get_tree())
 

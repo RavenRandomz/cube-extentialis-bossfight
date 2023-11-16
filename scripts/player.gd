@@ -29,11 +29,17 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 	set(new_body_turn_speed):
 		body_handler.body_turn_speed = new_body_turn_speed
 
+
+
 func _ready():
 	super._ready()
 	display.set_health_bar_range(min_health, max_health)
 	display.update_health_bar(health)
 	add_child(movement_handler)
+
+func damage(damage_amount:float):
+	super.damage(damage_amount)
+	display.update_health_bar(health)
 
 func _physics_process(_delta):
 	move_and_slide()

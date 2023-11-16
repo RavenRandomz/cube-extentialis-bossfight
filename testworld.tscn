@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://c8tcdkqy05qfo"]
+[gd_scene load_steps=9 format=3 uid="uid://c8tcdkqy05qfo"]
 
 [ext_resource type="PackedScene" uid="uid://bnlvq0ut74cfd" path="res://character/player.tscn" id="1_tsfjo"]
 [ext_resource type="PackedScene" uid="uid://db8eme6e062u" path="res://enemies/boss.tscn" id="2_6tpxl"]
 [ext_resource type="PackedScene" uid="uid://cy4egh8xged8" path="res://map_elements/damage_box.tscn" id="3_nuhrv"]
-[ext_resource type="PackedScene" uid="uid://cmmulbrsy1iwr" path="res://GUI/player_hud.tscn" id="4_wpvqo"]
 [ext_resource type="PackedScene" uid="uid://cr5t0ilnjw5f3" path="res://GUI/boss_fight_hud.tscn" id="5_64iom"]
 [ext_resource type="PackedScene" uid="uid://chnj8stg6x0vw" path="res://map_elements/box_territory.tscn" id="6_svkkm"]
 [ext_resource type="PackedScene" uid="uid://bhlupu2c6re12" path="res://enemies/protector.tscn" id="7_kegd4"]
@@ -25,13 +24,10 @@ size = Vector3(20, 1, 20)
 [node name="sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.330037, 0.943968, 0, -0.943968, -0.330037, 0, 3.03326, 0)
 
-[node name="Player" parent="." node_paths=PackedStringArray("display") instance=ExtResource("1_tsfjo")]
+[node name="Player" parent="." instance=ExtResource("1_tsfjo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 3.98877)
-display = NodePath("../PlayerHUD")
 
 [node name="DamageBox2" parent="." instance=ExtResource("3_nuhrv")]
-
-[node name="PlayerHUD" parent="." instance=ExtResource("4_wpvqo")]
 
 [node name="BossFightHUD" parent="." instance=ExtResource("5_64iom")]
 

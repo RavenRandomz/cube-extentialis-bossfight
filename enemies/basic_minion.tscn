@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://ykv65s4mm2ye"]
+[gd_scene load_steps=10 format=3 uid="uid://ykv65s4mm2ye"]
 
 [ext_resource type="Script" path="res://scripts/basic_minion.gd" id="1_fintc"]
 [ext_resource type="Script" path="res://weapons/gun.gd" id="2_n5o7j"]
 [ext_resource type="Script" path="res://scripts/basic_bullet_source.gd" id="4_3unn2"]
+[ext_resource type="PackedScene" uid="uid://yocua1iyrjpn" path="res://projectile/basic_slow_bullet.tscn" id="4_7ebdc"]
 [ext_resource type="Script" path="res://scripts/player_detector.gd" id="7_ajgd1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mm66v"]
@@ -33,6 +34,7 @@ _bullet_source = NodePath("BulletSource")
 [node name="BulletSource" type="Node3D" parent="CollisionShape3D/Gun"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, -1.283)
 script = ExtResource("4_3unn2")
+bullet_scene = ExtResource("4_7ebdc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D/Gun/BulletSource"]
 mesh = SubResource("BoxMesh_ywnvw")

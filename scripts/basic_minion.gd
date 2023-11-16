@@ -9,6 +9,7 @@ enum State {
 @onready var _state_idle:BasicMinionStateIdle = BasicMinionStateIdle.new(self)
 
 @onready var _state = _state_idle
+var DEFAULT_GRAVITY = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var _current_state = State.IDLE
 
@@ -24,6 +25,7 @@ func set_state(state:State):
 
 func _physics_process(delta):
 	_state._physics_process(delta)
+	_gravity_pull(delta)
 	move_and_slide()
 
 func _on_player_entered(player:Player):
@@ -33,3 +35,8 @@ func _on_player_entered(player:Player):
 
 func _on_player_exited(player:Player):
 	set_state(State.IDLE)
+
+func _gravity_pull(delta):
+	if not is_on_floor():
+		#print("Not on floor")
+		velocity.y -= DEFAULT_GRAVITY * delta

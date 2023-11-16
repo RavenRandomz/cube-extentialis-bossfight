@@ -24,6 +24,7 @@ mesh = ExtResource("2_xb1oo")
 skeleton = NodePath("../..")
 
 [node name="BulletDetector" parent="." instance=ExtResource("3_cqmla")]
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BulletDetector"]
 shape = SubResource("SphereShape3D_3tjxj")

@@ -19,7 +19,6 @@ func generate_random_internal_position() -> Vector3:
 	var offset = Vector3(randf_range(-shape.size.x, shape.size.x), 
 						randf_range(-shape.size.y, shape.size.y),
 						randf_range(-shape.size.z, shape.size.z))
-	print(origin+offset)
 	return origin + offset
 
 func add_to_watchlist(watchee):

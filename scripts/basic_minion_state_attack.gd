@@ -1,7 +1,7 @@
 class_name BasicMinionStateAttack extends BasicMinionState
 
 var _target:Node3D
-var speed = 10
+var speed = 1
 
 func _set_target(node:Node3D):
 	_target = node

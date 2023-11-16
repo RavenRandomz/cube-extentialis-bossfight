@@ -43,12 +43,10 @@ func _on_player_exited(player:Player):
 
 func _gravity_pull(delta):
 	if not is_on_floor():
-		#print("Not on floor")
 		velocity.y -= DEFAULT_GRAVITY * delta
 
 func _on_death():
 	queue_free()
 
 func damage(damage_amount:float):
-	print(health)
 	super.damage(damage_amount)

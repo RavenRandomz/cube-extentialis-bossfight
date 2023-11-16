@@ -20,3 +20,6 @@ func _physics_process(delta):
 	if (_target != null):
 		var _target_direction = _basic_minion.global_position.direction_to(_target.global_position)
 		_controlled_translational_motion(_target_direction)
+
+		_basic_minion._gun.aim(_target)
+		_basic_minion._gun.fire()

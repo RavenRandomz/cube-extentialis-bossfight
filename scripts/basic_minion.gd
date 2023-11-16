@@ -9,6 +9,7 @@ enum State {
 @onready var _state_idle:BasicMinionStateIdle = BasicMinionStateIdle.new(self)
 
 @onready var _state = _state_idle
+@export var _gun:Gun
 var DEFAULT_GRAVITY = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var _current_state = State.IDLE

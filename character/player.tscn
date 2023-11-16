@@ -19,6 +19,7 @@ display = NodePath("PlayerHUD")
 bullet_source = NodePath("OrbitalCamera/CameraFacer/BulletSource")
 input_handler = NodePath("PlayerInputHandler")
 body_handler = NodePath("PlayerBodyHandler")
+starting_health = 500
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_mm66v")
